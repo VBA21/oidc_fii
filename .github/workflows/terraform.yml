@@ -15,13 +15,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      -name: Checkout code
         uses: actions/checkout@v6
 
-      - name: Setup Terraform
+      -name: Setup Terraform
         uses: hashicorp/setup-terraform@v4
 
-      - name: Configure AWS Credentials
+      -name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
@@ -30,14 +30,14 @@ jobs:
 
       # --- LINTING & SECURITY (NON-BLOCKING) ---
 
-      - name: Install and Run TFLint
+      -name: Install and Run TFLint
         continue-on-error: true
         run: |
           curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
           tflint --init
           tflint
 
-      - name: Install and Run tfsec
+      -name: Install and Run tfsec
         continue-on-error: true
         run: |
           curl -s https://raw.githubusercontent.com/aquasecurity/tfsec/master/scripts/install_linux.sh | bash
