@@ -45,27 +45,27 @@ jobs:
 
        #--- ACTUAL DEPLOYMENT (BLOCKING) ---
 
-       - name: Terraform Format
+       -name: Terraform Format
          run: terraform fmt -check
 
-       - name: Terraform Initialize
+       -name: Terraform Initialize
          run: terraform init
 
-       - name: Terraform Validate
+       -name: Terraform Validate
          run: terraform validate
 
-       - name: Terraform Plan
+       -name: Terraform Plan
          run: terraform plan -out=tfplan
 
-       - name: Terraform Apply
+       -name: Terraform Apply
          run: terraform apply -auto-approve tfplan
 
-       - name: Terraform Destroy
+       -name: Terraform Destroy
          run: terraform destroy -auto-approve
 
-       - name: 📝 Post Deployment Summary
+       -name: 📝 Post Deployment Summary
          if: success()
-         run: |
+        run: |
            echo "##CloudPulse Deployment Complete!" >> $GITHUB_STEP_SUMMARY
            echo "Your infrastructure is live. Use the links below to access your services:" >> $GITHUB_STEP_SUMMARY
            echo "" >> $GITHUB_STEP_SUMMARY
